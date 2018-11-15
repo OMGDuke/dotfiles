@@ -81,25 +81,37 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="code ~/.zshrc"
+alias ohmyzsh="code ~/.oh-my-zsh"
+alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor | lolcat'
+# clear the terminal
+alias reset="clear && printf '\e[3J'"
+alias droplet="ssh username@ip.for.do.droplet | lolcat"
+alias py="python"
 
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 
 . `brew --prefix`/etc/profile.d/z.sh
 
-alias reset="clear && printf '\e[3J'"
 
 export PATH="$HOME/.yarn/bin:$PATH"
-
 export NVM_DIR="$HOME/.nvm"
   . "/usr/local/opt/nvm/nvm.sh"
-
 export GOPATH=$HOME/Documents/dev/go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+# Set the Java version
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PATH="$HOME/.fastlane/bin:$PATH"
 
+# type code to open vscode
 function code {
     if [[ $# = 0 ]]
     then
@@ -110,4 +122,6 @@ function code {
         open -a "Visual Studio Code" "$argPath"
     fi
 }
-neofetch
+
+
+neofetch --ascii ./ascii.txt | lolcat
